@@ -1,0 +1,58 @@
+.roomCont{
+    background-color: black;
+    width:65vw;
+    min-height:50vh;
+    display: flex; justify-content: center;
+    flex-wrap: wrap;
+    padding:10px 10px 10px 10px;
+    border: 2px solid rgb(221, 20, 114);
+    align-items: center;
+}
+
+label{
+    margin-right: 5px;
+}
+.heading{
+    color:rgb(221, 20, 114);
+    margin: auto;
+   font-size: 30px !important;
+    text-align: center;
+    text-decoration: underline;
+}
+.joincreate{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color:white;
+  
+}
+.buttoncont{
+    margin-left:auto;
+    margin-right: 5px;
+}
+.button{
+    background-color: rgb(221, 20, 114) !important;
+    width: 100px;
+    color:white;
+    font-weight: bold;
+    padding:5px 1px 5px 1px;
+    cursor: pointer;
+   
+   
+}
+
+.innerjoincreate{
+    margin:5px 5px 5px 5px;
+    display: flex;
+}
+
+@media (max-width:700px) {
+  
+  
+    .inputbox{
+        flex-direction: column !important;
+    }
+
+    .roomCont{
+        width:75vw;
+    }
+}

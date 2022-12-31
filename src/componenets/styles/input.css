@@ -1,0 +1,61 @@
+.inputdiv{
+   width: 100.5%;
+    height:40px;
+    display: flex;
+position: absolute;
+   bottom: 0px;
+   left:0;
+   right:0
+}
+.inputdiv textarea{
+    width: 80%;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    max-width: 80%;
+    min-width: 80%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.sendbutton{
+    height:47px;
+    background-color: rgb(221, 20, 114);
+    width: 20%;
+    cursor: pointer;
+    color: aliceblue;
+    font-size: large;
+    font-weight: 700;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+}
+
+@media (max-width:1500px) {
+    .sendbutton{
+     
+        width: 30%;
+    }
+    .inputdiv textarea{
+        max-width: 70%;
+        min-width: 70%;
+        
+        width: 70%;
+    }
+}
+
+@media (max-width:500px) {
+  
+    .sendbutton{
+        font-size: small;
+        width: 35%;
+    }
+    .inputdiv textarea{
+        max-width: 65%;
+        min-width: 65%;
+        
+        width: 65%;
+    }
+}

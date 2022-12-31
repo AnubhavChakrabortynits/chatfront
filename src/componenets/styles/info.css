@@ -1,0 +1,51 @@
+.infobar{
+    height:10%;
+ background-color: rgb(221, 20, 114);
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+align-items: center;
+border-top-right-radius: 10px;
+
+}
+.navlink{
+    text-decoration: none;
+    color:white
+}
+.leftinnercont{
+    height:100%;
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+    color: rgb(9, 253, 94);
+    
+}
+
+h3{
+    color:white;
+    font-weight: 700;
+    margin-left: 20px;
+    text-transform: uppercase;
+
+}
+.rightinnercont{
+    height:100%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    color:white;
+  
+}
+
+.rightinnercont span{
+    margin-right: 5px;
+}
+
+i{cursor: pointer;}
+
+@media (max-width:380px) {
+
+    .roomleave{
+        display: none;
+    }
+}
