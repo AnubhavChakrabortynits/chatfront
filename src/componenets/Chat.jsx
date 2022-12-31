@@ -55,7 +55,11 @@ else{
 }
 
 const deleteRoom=async(socket)=>{
-
+  
+  const ans=confirm('Are U Sure U Want To Delete This Room')
+  if(!ans){
+   return
+  }
   const data=await fetch(`http://localhost:5000/deleteroom`, {
     method: 'POST',
     headers: {
@@ -79,7 +83,10 @@ const deleteRoom=async(socket)=>{
 
 const removeUser=async(username)=>{
 
-  
+  const ans=confirm('Are U Sure U Want To Remove This User')
+  if(!ans){
+   return
+  }
   const data=await fetch(`http://localhost:5000/removeuser`, {
     method: 'POST',
     headers: {
@@ -100,7 +107,10 @@ const removeUser=async(username)=>{
 }
 
 const leaveRoom=async(username)=>{
-   
+   const ans=confirm('Are U Sure U Want To Leave The Room')
+   if(!ans){
+    return
+   }
   const data=await fetch(`http://localhost:5000/removeuser`, {
     method: 'POST',
     headers: {
@@ -133,9 +143,9 @@ const [mesgs,setMesgs]=useState([])
         navigate('/login')
         return
       }
-    //  if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
-    //    navigate('/login')
-     // }
+      if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
+        navigate('/login')
+      }
       handleInitialJoin()
       
      socket=io( `localhost:5000`,{transports: ['websocket']}) 

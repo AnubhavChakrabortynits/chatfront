@@ -7,9 +7,9 @@
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
-    border: 2px solid rgb(221, 20, 114);
+    border: 3px solid rgb(221, 20, 114);
     
-
+   border-radius: 6px;
  
 }
 

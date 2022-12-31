@@ -14,6 +14,10 @@ export default function Signup() {
          alert('Please Fill In All The Details')
          return
      }
+     if(name.length>15){
+      alert('Max Length Of UserName Can Be 15')
+      return
+     }
   const data=await fetch(`http://localhost:5000/signup`, {
     method: 'POST',
     headers: {

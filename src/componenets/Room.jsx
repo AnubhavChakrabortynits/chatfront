@@ -45,7 +45,10 @@ const handleNavigateCreate=async()=>{
     alert('Fill In All The Details')
     return
   }
-
+     if(croom.length>12){
+      alert('Max Length Of Room Can Be 12')
+      return
+     }
   const data=await fetch(`http://localhost:5000/create`, {
     method: 'POST',
     headers: {
