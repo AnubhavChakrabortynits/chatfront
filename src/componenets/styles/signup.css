@@ -1,8 +1,8 @@
 .signupcont{
     width:40vw;
     background-color: rgb(221, 20, 114) ;
-    min-height: 50vh;
-    height: 50vh;
+    min-height: 70vh;
+    height: 70vh;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -31,7 +31,7 @@
     align-items:center;
     justify-content: space-evenly;
     font-weight: bold;
-    font-size: large;
+    font-size: larger;
    
 }
 
@@ -42,7 +42,24 @@ label{
 }
 
 .buttonsignupcont button{
-    margin:5px 10px 5px 10px
+    margin:5px 10px 5px 10px;
+    box-shadow: -.5px 0.5px 1px white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.button{
+    text-align: center;
+}
+
+.inputname{
+    display: flex;
+    flex-direction: column;
+}
+.inputpass{
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width:700px) {
@@ -65,12 +82,5 @@ label{
     .buttonsignupcont button{
         margin-top: 10px;
     }
-    .inputname{
-        display: flex;
-        flex-direction: column;
-    }
-    .inputpass{
-        display: flex;
-        flex-direction: column;
-    }
+    
 }

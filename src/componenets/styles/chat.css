@@ -95,6 +95,15 @@ border-top-right-radius: 10px;
   cursor: pointer;
 }
 
+.signupbutton{
+  border:2px solid whitesmoke;
+  border-radius: 8px;
+}
+.signupbutton:hover{
+  background-color: whitesmoke !important;
+  color: rgb(221, 20, 114) !important;
+  border: 2px solid rgb(221, 20, 114) ;
+}
 @media (max-width:700px){
     .chatoutcont{
         width: 95vw;

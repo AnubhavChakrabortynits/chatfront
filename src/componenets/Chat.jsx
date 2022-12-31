@@ -133,9 +133,9 @@ const [mesgs,setMesgs]=useState([])
         navigate('/login')
         return
       }
-      if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
-        navigate('/login')
-      }
+    //  if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
+    //    navigate('/login')
+     // }
       handleInitialJoin()
       
      socket=io( `localhost:5000`,{transports: ['websocket']}) 
@@ -198,7 +198,7 @@ console.log('people are  ',users)
     <div className='chatoutcont' style={{color:"red"}}>
     
     <div ref={ref} className='users display'>
-    <div className='userrow' style={{height:"20%",fontWeight:'800',fontSize:'28px'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
+    <div className='userrow' style={{height:"20% ",fontWeight:'800',fontSize:'20px'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
        {users.map((item,i)=>{
        
         return <div key={i} className='userrow'> 
