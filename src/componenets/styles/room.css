@@ -28,6 +28,8 @@ label{
 .buttoncont{
     margin-left:auto;
     margin-right: 5px;
+    padding: 15px;
+    font-family: 'Playfair Display', serif
 }
 .button{
     background-color: rgb(221, 20, 114) !important;
@@ -36,8 +38,6 @@ label{
     font-weight: bold;
     padding:5px 1px 5px 1px;
     cursor: pointer;
-   
-   
 }
 
 .innerjoincreate{
@@ -54,5 +54,11 @@ label{
 
     .roomCont{
         width:75vw;
+    }
+}
+
+@media (max-width:350px){
+    .roomCont{
+        width: 90vw;
     }
 }

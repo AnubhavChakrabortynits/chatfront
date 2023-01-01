@@ -18,6 +18,10 @@ export default function Signup() {
       alert('Max Length Of UserName Can Be 15')
       return
      }
+     if(password.length<6){
+      alert('Password Length Needs To Be Atleast Of 6 Characters')
+      return
+     }
   const data=await fetch(`http://localhost:5000/signup`, {
     method: 'POST',
     headers: {

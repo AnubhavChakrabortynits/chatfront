@@ -49,6 +49,11 @@ const handleNavigateCreate=async()=>{
       alert('Max Length Of Room Can Be 12')
       return
      }
+
+     if(croompass.length<6){
+      alert('Room Password Needs To Be Of Atleast 6 Characters')
+      return
+     }
   const data=await fetch(`http://localhost:5000/create`, {
     method: 'POST',
     headers: {

@@ -41,12 +41,13 @@ label{
     margin-right: 15px;
 }
 
-.buttonsignupcont button{
+.buttonsignupcont{
     margin:5px 10px 5px 10px;
-    box-shadow: -.5px 0.5px 1px white;
+   
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 
 }
 .button{
@@ -83,4 +84,10 @@ label{
         margin-top: 10px;
     }
     
+}
+
+@media (max-width:370px){
+    .signupcont{
+        width: 90vw;
+    }
 }

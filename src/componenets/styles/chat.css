@@ -50,13 +50,13 @@ border-top-right-radius: 10px;
   width: 100%;
  background-color: rgb(238, 181, 190);
   z-index: 100;
-  bottom:0;
+  bottom:0.2px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px;
-border-top-right-radius: 10px;
+
 }
 .display{
   display:none

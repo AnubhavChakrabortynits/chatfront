@@ -9,7 +9,7 @@ export default function Info({room,socket,handleAllUserDisplay}) {
   return (
     <div className='infobar'>
       <div className='leftinnercont'>
-      <i className="fa-solid fa-globe" onClick={handleAllUserDisplay}></i>
+      <i className="fa-solid fa-users" style={{color:'white',fontSize:'20px'}} onClick={handleAllUserDisplay}></i>
         <h3>{room}</h3>
       </div>
       <div className='rightinnercont'>

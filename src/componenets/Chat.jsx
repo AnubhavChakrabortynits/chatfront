@@ -208,7 +208,7 @@ console.log('people are  ',users)
     <div className='chatoutcont' style={{color:"red"}}>
     
     <div ref={ref} className='users display'>
-    <div className='userrow' style={{height:"20% ",fontWeight:'800',fontSize:'20px'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
+    <div className='' style={{height:"100px",justifyContent:'center',display:'flex',backgroundColor:'antiquewhite',fontWeight:'800',fontSize:'24px',zIndex:'2'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
        {users.map((item,i)=>{
        
         return <div key={i} className='userrow'> 
