@@ -7,11 +7,13 @@
     padding:10px 10px 10px 10px;
     border: 2px solid rgb(221, 20, 114);
     align-items: center;
+    position: relative;
 }
 
 label{
     margin-right: 5px;
 }
+
 .heading{
     color:rgb(221, 20, 114);
     margin: auto;

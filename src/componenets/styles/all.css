@@ -6,3 +6,16 @@ body{
     background-color: rgb(6, 7, 7);
     font-family: 'Playfair Display', serif
 }
+.logout{
+    padding:15px 25px !important;
+}
+@media (max-width:630px) {
+    .logout{
+        transform: translateX(-1.2px) !important;
+    }
+}
+@media (max-width:430px) {
+    .logout{
+        transform: translateX(-1.5px) !important;
+    }
+}

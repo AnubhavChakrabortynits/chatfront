@@ -5,6 +5,7 @@ import Signup from './componenets/Signup';
 import Login from './componenets/Login';
 import Room from './componenets/Room';
 import Chat from './componenets/Chat';
+import './componenets/styles/all.css'
 
 export default function App() {
 
@@ -22,7 +23,8 @@ export default function App() {
   }
   return (
     <>
-   {localStorage.getItem('user') && <div><button className='button' style={{transform:'translateX(-1px) ',padding:'12px',borderBottom:'none',marginLeft:'1px',borderLeft:'none',borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} onClick={logout}>Logout</button></div>}
+    {localStorage.getItem('user') &&     <div style={{color:'white',fontSize:'28px',fontWeight:'800',textAlign:'center',marginBottom:'35px',textShadow:'2px 2px 1px rgb(221, 20, 114)'}}><span>JUST CHAT...</span></div>}
+   {localStorage.getItem('user') && <div><button className='button logout' style={{transform:'translateX(-1px) ',padding:'12px',borderBottom:'none',marginLeft:'1px',borderLeft:'none',borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} onClick={logout}>Logout</button></div>}
      <Routes>
      
      <Route path='/' element={<Landing/>} />
