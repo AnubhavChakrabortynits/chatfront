@@ -253,7 +253,7 @@ const [mesgs,setMesgs]=useState([])
         <div className='username'>
              {item.name}
         </div>
-        {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>Admin</div>:<div className='rmuser'></div>)}
+        {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>*Admin</div>:<div className='rmuser'></div>)}
         {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser'  onClick={()=>{banUser(item.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
         {location.state.roomobj.admin==(params.get('name')) && params.get('name')==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(params.get('name')==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: params.get('name')==(location.state.roomobj.admin) && (item.name)!=(location.state.roomobj.admin)?'':<div className='rmuser'></div>}
         </div>

@@ -24,7 +24,7 @@
     background:pink;
     color: aliceblue; 
     width: 55vw;
-    height: 75vh;
+    height: 470px;
 position: relative;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px;
@@ -107,5 +107,10 @@ border-bottom-left-radius: 10px;
 @media (max-width:700px){
     .chatoutcont{
         width: 95vw;
+    }
+}
+@media (max-width:450px){
+    .chatoutcont{
+        height: 500px;
     }
 }
