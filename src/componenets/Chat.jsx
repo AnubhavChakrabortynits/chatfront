@@ -247,18 +247,15 @@ const [mesgs,setMesgs]=useState([])
        {users.map((item,i)=>{
        
         return <div key={i} className='userrow'> 
-     {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?  
-     <div className='usericon'  onClick={()=>{banUser(item.name)}}><i class="fa-solid fa-ban"></i></div>: <div className='usericon '>
+        <div className='usericon '>
         <i className="fa-solid fa-user"></i>
-        </div>}
+        </div>
         <div className='username'>
              {item.name}
         </div>
-        
         {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>Admin</div>:<div className='rmuser'></div>)}
-       
-        {location.state.roomobj.admin==(params.get('name')) && params.get('name')==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(params.get('name')==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>:<div className='rmuser'></div>}
-        
+        {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser'  onClick={()=>{banUser(item.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
+        {location.state.roomobj.admin==(params.get('name')) && params.get('name')==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(params.get('name')==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: params.get('name')==(location.state.roomobj.admin) && (item.name)!=(location.state.roomobj.admin)?'':<div className='rmuser'></div>}
         </div>
        })}
     </div>
