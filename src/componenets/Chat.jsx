@@ -41,8 +41,6 @@ const handleInitialJoin=async()=>{
   const jdata=await data.json()
     jdata.chats.push({name:params.get('name'),type:'userjoined',room:params.get('room')})
   setMesgs(jdata.chats)
-
-
 }
 
 const handleAllUserDisplay=()=>{
@@ -72,7 +70,6 @@ const deleteRoom=async(socket)=>{
   if(jdata.success){
     setRoom('')
     socket.emit('mesg',{name,room,mesg:'Room Deleted'})
-  
     navigate('/room')
   }
   else{
@@ -154,6 +151,17 @@ const leaveRoom=async(username)=>{
   }
 }
 
+const sendMesg=()=>{
+  if(mesg){
+    if(JSON.parse(localStorage.getItem('user')).name!=params.get('name')){
+      navigate('/')
+      return
+    }
+    socket.emit('mesg',{name,room,mesg})
+    setMesg('')
+  }
+}
+
 const ref=useRef()
 const [name,setName]=useState(params.get('name'))
 const [users,setUsers]=useState(()=>location.state.roomobj.people)
@@ -161,6 +169,7 @@ const [room,setRoom]=useState(params.get('room'))
 const [roompass,setRoompass]=useState(params.get('roompass'))
 const [mesg,setMesg]=useState('')
 const [mesgs,setMesgs]=useState([])
+
     useEffect(()=>{
       
       if(!(localStorage.getItem('user'))){
@@ -178,11 +187,8 @@ const [mesgs,setMesgs]=useState([])
      setName(params.get('name'))
      setRoompass(params.get('roompass'))
      socket.emit('join',{name,room,roompass})
-        console.log(socket)
-
-  
-      socket.on('mesg',(data)=>{
-
+     //console.log(socket)
+     socket.on('mesg',(data)=>{
         if(data.type=='roomdeleted'){
           alert('Room Has Been Deleted By The Admin')
           navigate('/room')
@@ -190,9 +196,7 @@ const [mesgs,setMesgs]=useState([])
         }
         if(data.type=='userjoined'){
           getUsersInARoom()
-          
         }
-
         if(data.type=='userremoved'){
           getUsersInARoom()
           if(data.name==params.get('name')){
@@ -207,7 +211,6 @@ const [mesgs,setMesgs]=useState([])
             navigate('/room')
           }
         }
-
         if(data.type=='userleft'){
           getUsersInARoom()
           if(data.name==params.get('name')){
@@ -224,28 +227,11 @@ const [mesgs,setMesgs]=useState([])
         }
     },[name,room])
 
-    //console.log('people are  ',users)
-
-    const sendMesg=()=>{
-      if(mesg){
-        if(JSON.parse(localStorage.getItem('user')).name!=params.get('name')){
-          navigate('/')
-          return
-        }
-        socket.emit('mesg',{name,room,mesg})
-       
-        setMesg('')
-     
-      }
-    }
-  // console.log(mesgs)
   return (
     <div className='chatoutcont' style={{color:"red"}}>
-    
     <div ref={ref} className='users display'>
     <div className='' style={{height:"100px",justifyContent:'center',display:'flex',backgroundColor:'antiquewhite',fontWeight:'800',fontSize:'24px',zIndex:'2'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
        {users.map((item,i)=>{
-       
         return <div key={i} className='userrow'> 
         <div className='usericon '>
         <i className="fa-solid fa-user"></i>
@@ -261,10 +247,7 @@ const [mesgs,setMesgs]=useState([])
     </div>
     <Info room={room} socket={socket} handleAllUserDisplay={handleAllUserDisplay}/>
       <div className='container'>
-    
-      
       <Messages messages={mesgs}   />
-
       </div>
       <div className='inputcont'>
       <Input className='input' message={mesg} setMessage={setMesg} sendMessage={sendMesg} />
