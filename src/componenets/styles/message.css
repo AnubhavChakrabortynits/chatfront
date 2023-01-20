@@ -9,8 +9,6 @@
    padding-right:5px;
    border-radius: 15px;
    border: 2px solid rgb(221, 20, 114);
- 
-
 }
 .outerbox{
     width: 95%;
@@ -28,7 +26,7 @@
 }
 .end > .username{
   
-
+    font-family: 'Edu TAS Beginner', cursive;
     padding-top:2px;padding-bottom: 2px;
     color:green;
     padding-left: 5px;
@@ -64,7 +62,7 @@
     height: auto;
   overflow: auto;
   padding: 5px;
-
+  font-family: 'Edu TAS Beginner', cursive;
   white-space: pre-line;
     font-weight: bolder;
 }
@@ -84,15 +82,14 @@ max-width: 100%;
     height: auto;
   overflow: auto;
   padding: 5px;
-
   white-space: pre-line;
-  font-family: 'Prosto One', cursive;
+  
+  font-family: 'Poppins', sans-serif;
     
 }
 
 .bgblue span{
     color:black;
-  
     font-weight: bolder;
 }
 @media (max-width:1050px) {

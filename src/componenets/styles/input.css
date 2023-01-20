@@ -49,6 +49,25 @@ position: absolute;
     }
 }
 
+
+@media (max-width:1024px) and (max-height:1366px) {
+    .inputdiv{
+        height:35%;
+    }
+    .sendbutton{
+        height:112%;
+    }
+}    
+  
+@media (max-width:1024px) and (max-height:1366px) {
+    .inputdiv{
+        height:40px;
+    }
+    .sendbutton{
+        height:47px;
+    }
+}    
+  
 @media (max-width:500px) {
   
     .sendbutton{

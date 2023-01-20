@@ -45,9 +45,11 @@ const handleInitialJoin=async()=>{
 
 const handleAllUserDisplay=()=>{
 if(ref.current.classList.contains('display')){
+  document.getElementById('users').style.transform='translateX(0)'
  ref.current.classList.remove('display')
 }
 else{
+  document.getElementById('users').style.transform='translateX(-100%)'
   ref.current.classList.add('display')
 }
 }
@@ -166,7 +168,7 @@ const ref=useRef()
 const [name,setName]=useState(params.get('name'))
 const [users,setUsers]=useState(()=>location.state.roomobj.people)
 const [room,setRoom]=useState(params.get('room'))
-const [roompass,setRoompass]=useState(params.get('roompass'))
+const [roompass,setRoompass]=useState(location.state.roomobj.password)
 const [mesg,setMesg]=useState('')
 const [mesgs,setMesgs]=useState([])
 
@@ -185,7 +187,7 @@ const [mesgs,setMesgs]=useState([])
      getUsersInARoom()  
      setRoom(params.get('room'))
      setName(params.get('name'))
-     setRoompass(params.get('roompass'))
+     setRoompass(location.state.roomobj.password)
      socket.emit('join',{name,room,roompass})
      //console.log(socket)
      socket.on('mesg',(data)=>{
@@ -229,7 +231,7 @@ const [mesgs,setMesgs]=useState([])
 
   return (
     <div className='chatoutcont' style={{color:"red"}}>
-    <div ref={ref} className='users display'>
+    <div ref={ref} className='users display' id="users">
     <div className='' style={{height:"100px",justifyContent:'center',display:'flex',backgroundColor:'antiquewhite',fontWeight:'800',fontSize:'24px',zIndex:'2'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
        {users.map((item,i)=>{
         return <div key={i} className='userrow'> 

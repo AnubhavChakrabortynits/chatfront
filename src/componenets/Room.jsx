@@ -32,7 +32,7 @@ const handlenavigatejoin=async()=>{
   const jdata=await data.json()
   console.log(jdata)
   if(jdata.success){
-    navigate(`/chat?name=${name}&room=${room}&roompass=${roompass}}`,{state:{roomobj:jdata.room}})
+    navigate(`/chat?name=${name}&room=${room}`,{state:{roomobj:jdata.room}})
   }
   else{
     alert(jdata.error)

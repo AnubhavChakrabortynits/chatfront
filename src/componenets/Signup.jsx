@@ -42,8 +42,6 @@ export default function Signup() {
 
   }
 
-
-
   useEffect(()=>{
     if(localStorage.getItem('user')){
       navigate('/room')
@@ -67,7 +65,7 @@ export default function Signup() {
           <input type='text' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
         </div>
         <div className='buttonsignupcont'>
-          <div className='button signupbutton' style={{fontWeight:'800'}}  onClick={signup}>Signup</div> <div style={{padding:'10px 15px',backgroundColor:'black',color:'white',fontWeight:'bolder',cursor:'pointer',border:'1px solid white',marginTop:'15px',borderRadius:'12px'}} onClick={()=>{navigate('/login')}}> goto Login</div>
+          <div className='signloginbutton' style={{fontWeight:'800'}}  onClick={signup}><span>Signup</span></div> <div className='gotobutton' style={{padding:'10px 15px',fontWeight:'bolder',cursor:'pointer',border:'1px solid white',marginTop:'15px',borderRadius:'12px'}} onClick={()=>{navigate('/login')}}> <span>goto Login</span> </div>
         
         </div>
 
