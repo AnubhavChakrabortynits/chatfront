@@ -8,7 +8,7 @@ export default function Input({message,setMessage,sendMessage}) {
     <div className='inputdiv'>
    
    <textarea placeholder='Type Your Message...' type="text" value={message} onChange={(e)=>{setMessage(e.target.value)}} />
-   <button className='sendbutton' onClick={sendMessage}><i class="fa-sharp fa-solid fa-paper-plane"></i>
+   <button className='sendbutton' onClick={sendMessage}><i class="fa-sharp fa-solid fa-paper-plane" style={{color:"red"}}></i>
   </button>
     </div>
   )

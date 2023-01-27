@@ -1,16 +1,14 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './styles/room.css';
 import { useNavigate } from 'react-router-dom';
 export default function Room() {
  
-   const navigate=useNavigate()
+  const navigate=useNavigate()
   const [name,setName]=useState('')
   const [room,setRoom]=useState('')
   const [roompass,setRoompass]=useState('')
 
-  const [cname,setcName]=useState('')
   const [croom,setcRoom]=useState('')
   const [croompass,setcroomPass]=useState('')
 
@@ -26,13 +24,14 @@ const handlenavigatejoin=async()=>{
     headers: {
       "Content-type": "application/json"
     },
- 
-    body: JSON.stringify({name:name,room,roompass})
+    
+    body: JSON.stringify({name:name,room,roompass,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
+  console.log(JSON.parse(localStorage.getItem('user')))
   console.log(jdata)
   if(jdata.success){
-    navigate(`/chat?name=${name}&room=${room}`,{state:{roomobj:jdata.room}})
+    navigate(`/chat?name=${name}&room=${room}`,{state:{roomobj:jdata.room,userobj:name}})
   }
   else{
     alert(jdata.error)
@@ -60,18 +59,36 @@ const handleNavigateCreate=async()=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:JSON.parse(localStorage.getItem('user'))?.name,room:croom,roompass:croompass})
+    body: JSON.stringify({name:name,room:croom,roompass:croompass,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
 
   if(jdata.success){
-    navigate(`/chat?name=${name}&room=${croom}&roompass=${croompass}}`,{state:{roomobj:jdata.room}})
+    navigate(`/chat?name=${name}&room=${croom}&roompass=${croompass}}`,{state:{roomobj:jdata.room,userobj:name}})
   }
   else{
     alert(jdata.error)
   }
 }
 
+const handleOnRoomPage=async()=>{
+  const data=await fetch(`http://localhost:5000/onroompage`, {
+    method: 'POST',
+    headers: {
+      "Content-type": "application/json"
+    },
+ 
+    body: JSON.stringify({user:JSON.parse(localStorage.getItem('user')),room:croom,roompass:croompass})
+  })
+  const jdata=await data.json()
+
+  if(jdata.user){
+      setName(jdata.user.user)
+  }
+  else{
+    navigate('/login')
+  }
+}
 
 
 useEffect(()=>{
@@ -79,7 +96,7 @@ useEffect(()=>{
     navigate('/login')
   }
   else{
-    setName(JSON.parse(localStorage.getItem('user')).name)
+    handleOnRoomPage()
   }
   
 })

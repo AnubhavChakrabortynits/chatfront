@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useRef } from 'react'
 import '../componenets/styles/message.css'
-export default function Message({message}) {
+export default function Message({message,user}) {
     const [params]=useSearchParams()
    const mymessage=useState(message)
     let iscurrentuser=false
@@ -13,7 +13,7 @@ const scrollbottom=()=>{
     scroll.current.scrollIntoView({behavior: 'smooth'})
 }
 
-    if(name==params.get('name')){
+    if(name==user){
         iscurrentuser=true
     }
     else{
@@ -24,10 +24,10 @@ const scrollbottom=()=>{
     },[mymessage])
   return (
     <div  className='outerbox' style={{marginTop:"15px"}}>{iscurrentuser==true?<div ref={scroll} className='messagecont end'>
-<span className='username' style={{margin:'auto'}}>~ {message.name==params.get('name')?'You':message.name}</span>
+<span className='username' style={{margin:'auto'}}>~ {message.name==user?'You':message.name}</span>
 <pre className='messagebox bgblue'>
    <span>
-       {message.type=='userjoined'?(String((message.name==params.get('name')?'You ':message.name))+`joined room --${message.room}`):message.mesg}
+       {message.type=='userjoined'?(String((message.name==user?'You ':message.name))+`joined room --${message.room}`):message.mesg}
        </span>  
 </pre>
     </div>

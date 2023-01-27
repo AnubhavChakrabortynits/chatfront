@@ -1,7 +1,7 @@
 body{
     --webkit-font-smoothing: antialised;
     display: flex;
-    min-height: 99vh;
+    min-height:100vh;
     justify-content: center;
     align-items: center;
     background-color: rgb(6, 7, 7);

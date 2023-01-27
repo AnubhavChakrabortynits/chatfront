@@ -23,29 +23,38 @@ const getUsersInARoom=async()=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({room:room})
+    body: JSON.stringify({room:room,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
 
   setUsers(jdata.users)
 }
 const handleInitialJoin=async()=>{
+
   const data=await fetch(`http://localhost:5000/initialjoin`, {
     method: 'POST',
     headers: {
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name,room,roompass})
+    body: JSON.stringify({name,room,roompass,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
+  if(jdata.chats){
     jdata.chats.push({name:params.get('name'),type:'userjoined',room:params.get('room')})
-  setMesgs(jdata.chats)
+    setMesgs(jdata.chats)
+  }
+  else if(jdata.error){
+    localStorage.clear()
+    navigate('/login')
+  }
+    
 }
 
 const handleAllUserDisplay=()=>{
+
 if(ref.current.classList.contains('display')){
-  document.getElementById('users').style.transform='translateX(0)'
+  document.getElementById('users').style.transform='translateX(0%)'
  ref.current.classList.remove('display')
 }
 else{
@@ -66,9 +75,10 @@ const deleteRoom=async(socket)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({room:room})
+    body: JSON.stringify({room:room,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
+
   if(jdata.success){
     setRoom('')
     socket.emit('mesg',{name,room,mesg:'Room Deleted'})
@@ -92,7 +102,7 @@ const removeUser=async(username)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:room,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
 
@@ -116,7 +126,7 @@ const banUser=async(username)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:room,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
 
@@ -140,7 +150,7 @@ const leaveRoom=async(username)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:room,user:JSON.parse(localStorage.getItem('user'))})
   })
   const jdata=await data.json()
 
@@ -155,19 +165,17 @@ const leaveRoom=async(username)=>{
 
 const sendMesg=()=>{
   if(mesg){
-    if(JSON.parse(localStorage.getItem('user')).name!=params.get('name')){
-      navigate('/')
-      return
-    }
+    console.log(mesg)
     socket.emit('mesg',{name,room,mesg})
+    console.log({name,room,mesg})
     setMesg('')
   }
 }
 
 const ref=useRef()
-const [name,setName]=useState(params.get('name'))
+const [name,setName]=useState(location.state.userobj)
 const [users,setUsers]=useState(()=>location.state.roomobj.people)
-const [room,setRoom]=useState(params.get('room'))
+const [room,setRoom]=useState(location.state.roomobj.name)
 const [roompass,setRoompass]=useState(location.state.roomobj.password)
 const [mesg,setMesg]=useState('')
 const [mesgs,setMesgs]=useState([])
@@ -178,15 +186,13 @@ const [mesgs,setMesgs]=useState([])
         navigate('/login')
         return
       }
-      if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
-        navigate('/login')
-      }
       handleInitialJoin()
       
-     socket=io( `localhost:5000`,{transports: ['websocket']}) 
+     socket=io( `
+     localhost:5000`,{transports: ['websocket']}) 
      getUsersInARoom()  
-     setRoom(params.get('room'))
-     setName(params.get('name'))
+     setRoom(location.state.roomobj.name)
+     setName(location.state.userobj)
      setRoompass(location.state.roomobj.password)
      socket.emit('join',{name,room,roompass})
      //console.log(socket)
@@ -201,21 +207,21 @@ const [mesgs,setMesgs]=useState([])
         }
         if(data.type=='userremoved'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==name){
             alert('You Have Been Removed By The Room Admin')
             navigate('/room')
           }
         }
         if(data.type=='userbanned'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==name){
             alert('You Have Been Banned By The Room Admin')
             navigate('/room')
           }
         }
         if(data.type=='userleft'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==name){
             alert('You Have Left The Room')
             navigate('/room')
           }
@@ -249,10 +255,10 @@ const [mesgs,setMesgs]=useState([])
     </div>
     <Info room={room} socket={socket} handleAllUserDisplay={handleAllUserDisplay}/>
       <div className='container'>
-      <Messages messages={mesgs}   />
+      <Messages messages={mesgs}  user={location.state.userobj}   />
       </div>
       <div className='inputcont'>
-      <Input className='input' message={mesg} setMessage={setMesg} sendMessage={sendMesg} />
+      <Input className='input' message={mesg} setMessage={setMesg} sendMessage={sendMesg}  user={location.state.userobj} />
       </div>
     </div>
   )
