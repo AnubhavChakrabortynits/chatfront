@@ -36,10 +36,17 @@ const handleInitialJoin=async()=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name,room,roompass})
+    body: JSON.stringify({name,room,roompass,user:localStorage.getItem('user')})
   })
   const jdata=await data.json()
-    jdata.chats.push({name:params.get('name'),type:'userjoined',room:params.get('room')})
+  if(jdata.error){
+    alert("Please Log In Again...")
+    localStorage.clear()
+    navigate('/login')
+    return
+  }
+
+  jdata.chats.push({name:location.state.userobj,type:'userjoined',room:location.state.roomobj.name})
   setMesgs(jdata.chats)
 }
 
@@ -66,7 +73,7 @@ const deleteRoom=async(socket)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({room:room})
+    body: JSON.stringify({room:room,user:localStorage.getItem('user')})
   })
   const jdata=await data.json()
   if(jdata.success){
@@ -86,14 +93,16 @@ const removeUser=async(username)=>{
   if(!ans){
    return
   }
+
   const data=await fetch(`http://localhost:5000/removeuser`, {
     method: 'POST',
     headers: {
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:location.state.roomobj.name,user:localStorage.getItem('user')})
   })
+
   const jdata=await data.json()
 
   if(jdata.success){
@@ -106,6 +115,7 @@ const removeUser=async(username)=>{
 }
 
 const banUser=async(username)=>{
+
   const ans=confirm('Are U Sure U Want To Ban This User')
   if(!ans){
    return
@@ -116,8 +126,9 @@ const banUser=async(username)=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:location.state.roomobj.name,user:localStorage.getItem('user')})
   })
+
   const jdata=await data.json()
 
   if(jdata.success){
@@ -130,18 +141,21 @@ const banUser=async(username)=>{
 }
 
 const leaveRoom=async(username)=>{
+
    const ans=confirm('Are U Sure U Want To Leave The Room')
    if(!ans){
     return
    }
+
   const data=await fetch(`http://localhost:5000/removeuser`, {
     method: 'POST',
     headers: {
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:username,room:params.get('room')})
+    body: JSON.stringify({name:username,room:location.state.roomobj.name,user:localStorage.getItem('user')})
   })
+  
   const jdata=await data.json()
 
   if(jdata.success){
@@ -155,19 +169,15 @@ const leaveRoom=async(username)=>{
 
 const sendMesg=()=>{
   if(mesg){
-    if(JSON.parse(localStorage.getItem('user')).name!=params.get('name')){
-      navigate('/')
-      return
-    }
     socket.emit('mesg',{name,room,mesg})
     setMesg('')
   }
 }
 
 const ref=useRef()
-const [name,setName]=useState(params.get('name'))
+const [name,setName]=useState(location.state.userobj)
 const [users,setUsers]=useState(()=>location.state.roomobj.people)
-const [room,setRoom]=useState(params.get('room'))
+const [room,setRoom]=useState(location.state.roomobj.name)
 const [roompass,setRoompass]=useState(location.state.roomobj.password)
 const [mesg,setMesg]=useState('')
 const [mesgs,setMesgs]=useState([])
@@ -178,15 +188,13 @@ const [mesgs,setMesgs]=useState([])
         navigate('/login')
         return
       }
-      if(JSON.parse(localStorage.getItem('user')).name!=(params.get('name'))){
-        navigate('/login')
-      }
+
       handleInitialJoin()
       
      socket=io( `localhost:5000`,{transports: ['websocket']}) 
      getUsersInARoom()  
-     setRoom(params.get('room'))
-     setName(params.get('name'))
+     setRoom(location.state.roomobj.name)
+     setName(location.state.userobj)
      setRoompass(location.state.roomobj.password)
      socket.emit('join',{name,room,roompass})
      //console.log(socket)
@@ -201,21 +209,21 @@ const [mesgs,setMesgs]=useState([])
         }
         if(data.type=='userremoved'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==location.state.userobj){
             alert('You Have Been Removed By The Room Admin')
             navigate('/room')
           }
         }
         if(data.type=='userbanned'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==location.state.userobj){
             alert('You Have Been Banned By The Room Admin')
             navigate('/room')
           }
         }
         if(data.type=='userleft'){
           getUsersInARoom()
-          if(data.name==params.get('name')){
+          if(data.name==location.state.userobj){
             alert('You Have Left The Room')
             navigate('/room')
           }
@@ -241,15 +249,15 @@ const [mesgs,setMesgs]=useState([])
         <div className='username'>
              {item.name}
         </div>
-        {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>*Admin</div>:<div className='rmuser'></div>)}
-        {params.get('name')==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser'  onClick={()=>{banUser(item.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
-        {location.state.roomobj.admin==(params.get('name')) && params.get('name')==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(params.get('name')==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: params.get('name')==(location.state.roomobj.admin) && (item.name)!=(location.state.roomobj.admin)?'':<div className='rmuser'></div>}
+        {location.state.userobj==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>*Admin</div>:<div className='rmuser'></div>)}
+        {location.state.userobj==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser'  onClick={()=>{banUser(item.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
+        {location.state.roomobj.admin==location.state.userobj && location.state.userobj==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(location.state.userobj==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: location.state.userobj==(location.state.roomobj.admin) && (item.name)!=(location.state.roomobj.admin)?'':<div className='rmuser'></div>}
         </div>
        })}
     </div>
     <Info room={room} socket={socket} handleAllUserDisplay={handleAllUserDisplay}/>
       <div className='container'>
-      <Messages messages={mesgs}   />
+      <Messages messages={mesgs} currentuser={location.state.userobj}  />
       </div>
       <div className='inputcont'>
       <Input className='input' message={mesg} setMessage={setMesg} sendMessage={sendMesg} />

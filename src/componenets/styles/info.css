@@ -5,6 +5,7 @@
  display: flex;
  justify-content: space-between;
 align-items: center;
+border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 font-family: 'Kdam Thmor Pro', sans-serif;
 
@@ -34,18 +35,27 @@ h3{
     display: flex;
     align-items: center;
     color:white;
-  
+    width: 25%;
+    justify-content: space-around;
 }
 
 .rightinnercont span{
     margin-right: 5px;
 }
 
+.roomleave{
+    background-color: rgb(213, 85, 145);
+    font-weight: 600;
+    border: 1px solid beige;
+    border-radius: 7px;
+    color: whitesmoke;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.roomleave:hover{
+    background-color: rgb(212, 0, 99);
+}
 i{cursor: pointer;}
 
-@media (max-width:380px) {
-
-    .roomleave{
-        display: none;
-    }
-}

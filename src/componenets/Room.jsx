@@ -10,7 +10,6 @@ export default function Room() {
   const [room,setRoom]=useState('')
   const [roompass,setRoompass]=useState('')
 
-  const [cname,setcName]=useState('')
   const [croom,setcRoom]=useState('')
   const [croompass,setcroomPass]=useState('')
 
@@ -27,12 +26,12 @@ const handlenavigatejoin=async()=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:name,room,roompass})
+    body: JSON.stringify({name:name,room,roompass,user:localStorage.getItem('user')})
   })
   const jdata=await data.json()
   console.log(jdata)
   if(jdata.success){
-    navigate(`/chat?name=${name}&room=${room}`,{state:{roomobj:jdata.room}})
+    navigate(`/chat`,{state:{roomobj:jdata.room,userobj:name}})
   }
   else{
     alert(jdata.error)
@@ -60,18 +59,49 @@ const handleNavigateCreate=async()=>{
       "Content-type": "application/json"
     },
  
-    body: JSON.stringify({name:JSON.parse(localStorage.getItem('user'))?.name,room:croom,roompass:croompass})
+    body: JSON.stringify({name:name,room:croom,roompass:croompass,user:localStorage.getItem('user')})
   })
   const jdata=await data.json()
 
   if(jdata.success){
-    navigate(`/chat?name=${name}&room=${croom}&roompass=${croompass}}`,{state:{roomobj:jdata.room}})
+    navigate(`/chat`,{state:{roomobj:jdata.room,userobj:name}})
   }
   else{
     alert(jdata.error)
   }
 }
 
+const onRoomPage=async()=>{
+
+  const data=await fetch(`http://localhost:5000/onroompage`, {
+    method: 'POST',
+    headers: {
+      "Content-type": "application/json"
+    },
+ 
+    body: JSON.stringify({user:localStorage.getItem('user')})
+  })
+  const jdata=await data.json()
+  if(jdata.success){
+    setName(jdata.user.user)
+  }
+  else{
+    alert(jdata.error)
+    navigate('/login')
+    localStorage.clear()
+  }
+}
+
+const logout=()=>{
+  try{
+     localStorage.clear()
+     alert('Logged Out Succcessfully..')
+     navigate('/')
+  }
+  catch(e){
+            console.log(e)
+  }
+}
 
 
 useEffect(()=>{
@@ -79,11 +109,13 @@ useEffect(()=>{
     navigate('/login')
   }
   else{
-    setName(JSON.parse(localStorage.getItem('user')).name)
+   onRoomPage()
   }
   
-})
+},[])
   return (
+    <>
+      {localStorage.getItem('user') && <div><button className='button logout' style={{transform:'translateX(-1px) ',padding:'12px',borderBottom:'none',marginLeft:'1px',borderLeft:'none',borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} onClick={logout}>Logout</button></div>}
     <div className='roomCont'>
       <div className='joinInCont'>
         <div className='heading' style={{fontSize:"20px"}}>Join / Create Room</div>
@@ -121,5 +153,6 @@ useEffect(()=>{
         </div>
       </div>
     </div>
+    </>
   )
 }

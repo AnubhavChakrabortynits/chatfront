@@ -9,7 +9,7 @@ import { css } from '@emotion/react'
 
 
 
-export default function Messages({messages}) {
+export default function Messages({messages,currentuser}) {
 
   const ROOT_CSS = css({
     height: 600,
@@ -23,7 +23,7 @@ export default function Messages({messages}) {
    
    {messages?.map((item,index)=>{
     return <div key={index}>
-        <Message  message={item}/>
+        <Message  message={item} currentuser={currentuser}/>
     </div>
    })}
   

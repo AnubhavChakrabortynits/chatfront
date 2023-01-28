@@ -24,7 +24,7 @@ export default function Login() {
   const jdata=await data.json()
 
   if(jdata.success){
-    localStorage.setItem('user',JSON.stringify(jdata.user))
+    localStorage.setItem('user',jdata.user)
     alert('Logged In Successfully')
     navigate('/room')
   }
