@@ -27,12 +27,25 @@ label{
     color:white;
   
 }
+
+.joinInput{
+    height:2.5em;
+    border: 3px solid beige;
+    box-shadow: inset 0.5px 0.5px 2px rgb(221, 20, 114),inset -0.5px -0.5px 2px rgb(221, 20, 114);
+    padding: 0 5px;
+}
+
+.joinInput:focus{
+    outline: none;
+}
+
 .buttoncont{
     margin-left:auto;
     margin-right: 5px;
     padding: 15px;
     font-family: 'Playfair Display', serif
 }
+
 .button{
     background-color: rgb(221, 20, 114) !important;
     width: 100px;

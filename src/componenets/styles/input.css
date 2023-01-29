@@ -2,7 +2,7 @@
    width: 100.5%;
     height:40px;
     display: flex;
-position: absolute;
+   position: absolute;
    bottom: 0px;
    left:0;
    right:0;
@@ -16,12 +16,17 @@ position: absolute;
     min-height: 100%;
     max-width: 80%;
     min-width: 80%;
-    border: 1.5px solid rgb(221, 20, 114);
+    border: 1.5px solid rgb(221, 20, 114) ;
     border-bottom: none;
     border-left: none;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    scrollbar-width: none;
+}
+
+textarea::-webkit-scrollbar{
+    display: none;
 }
 
 .inputdiv textarea:focus{
@@ -30,12 +35,12 @@ position: absolute;
 
 .sendbutton{
     height:47px;
-    background-color: rgb(225, 175, 183);
+    background-color: rgb(244, 192, 200);
     width: 20%;
     cursor: pointer;
     font-size: large;
     font-weight: 700;
-    border: 1.5px solid rgb(221, 20, 114);
+    border: 1.5px solid rgb(221, 20, 114) ;
     border-bottom: none;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;

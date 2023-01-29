@@ -11,7 +11,6 @@ export default function App() {
 
   return (
     <>
-    {localStorage.getItem('user') &&     <div style={{color:'white',fontSize:'28px',fontWeight:'800',textAlign:'center',marginBottom:'35px',textShadow:'2px 2px 1px rgb(221, 20, 114)',textDecoration:'underline'}}><span>JUST CHAT...</span></div>}
      <Routes>
      
      <Route path='/' element={<Landing/>} />

@@ -8,7 +8,8 @@
    margin:2px 10px 2px 10px;
    padding-right:5px;
    border-radius: 15px;
-   border: 2px solid rgb(221, 20, 114);
+   border: 4px solid beige;
+   box-shadow: inset 0.5px 0.5px 2px rgb(221, 20, 114),inset -0.5px -0.5px 2px rgb(221, 20, 114),0.5px 0.5px 2px rgb(221, 20, 114),-0.5px -0.5px 2px rgb(221, 20, 114);
 }
 .outerbox{
     width: 95%;
@@ -34,10 +35,10 @@
     text-align: center;
     display: inline-block;
     height: auto;
-  overflow: auto;
-  padding: 5px;
+   overflow: auto;
+   padding: 5px;
 
-  white-space: pre-line;
+    white-space: pre-line;
     font-weight: bolder;
 
 }
@@ -67,11 +68,8 @@
     font-weight: bolder;
 }
 .messagebox{
-max-width: 100%;
- 
-
+    max-width: 100%;
     height: auto;
-
     word-wrap: break-word;
 
 }
@@ -80,9 +78,9 @@ max-width: 100%;
     max-width: 100%;
     display: inline-block;
     height: auto;
-  overflow: auto;
-  padding: 5px;
-  white-space: pre-line;
+    overflow: auto;
+    padding: 5px;
+    white-space: pre-line;
   
   font-family: 'Poppins', sans-serif;
     

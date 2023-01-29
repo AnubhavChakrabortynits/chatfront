@@ -113,6 +113,7 @@ useEffect(()=>{
   }
   
 },[])
+
   return (
     <>
       {localStorage.getItem('user') && <div><button className='button logout' style={{transform:'translateX(-1px) ',padding:'12px',borderBottom:'none',marginLeft:'1px',borderLeft:'none',borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}} onClick={logout}>Logout</button></div>}
