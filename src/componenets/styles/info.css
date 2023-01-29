@@ -1,13 +1,13 @@
 .infobar{
-    height:10%;
+ height:10%;
  background-color: rgb(221, 20, 114);
  width: 100%;
  display: flex;
- justify-content: space-between;
-align-items: center;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-font-family: 'Kdam Thmor Pro', sans-serif;
+ justify-content: space-between; 
+ align-items: center;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+ font-family: 'Kdam Thmor Pro', sans-serif;
 
 }
 .navlink{
@@ -29,6 +29,7 @@ h3{
     text-transform: uppercase;
 
 }
+
 .rightinnercont{
     height:100%;
     margin-right: 20px;
@@ -49,7 +50,7 @@ h3{
     border: 1px solid beige;
     border-radius: 7px;
     color: whitesmoke;
-    padding: 10px 20px;
+    padding: 7px 20px;
     cursor: pointer;
     transition: all 0.5s;
 }
@@ -57,5 +58,21 @@ h3{
 .roomleave:hover{
     background-color: rgb(212, 0, 99);
 }
+
 i{cursor: pointer;}
 
+@media (max-width: 414px) {
+    h3{
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 320px) {
+    h3{
+        font-size: 0.8em;
+    }
+
+    .roomleave{
+        font-size: 0.9em;
+    }
+}

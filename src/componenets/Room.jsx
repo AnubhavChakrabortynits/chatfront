@@ -44,7 +44,7 @@ const handleNavigateCreate=async()=>{
     alert('Fill In All The Details')
     return
   }
-     if(croom.length>12){
+     if(croom.length>10){
       alert('Max Length Of Room Can Be 12')
       return
      }
