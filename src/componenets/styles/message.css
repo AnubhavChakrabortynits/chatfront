@@ -9,7 +9,7 @@
    padding-right:5px;
    border-radius: 15px;
    border: 4px solid beige;
-   box-shadow: inset 0.5px 0.5px 2px rgb(221, 20, 114),inset -0.5px -0.5px 2px rgb(221, 20, 114),0.5px 0.5px 2px rgb(221, 20, 114),-0.5px -0.5px 2px rgb(221, 20, 114);
+   box-shadow: inset 0.5px 0.5px 2px rgb(221, 20, 114),inset -0.5px -0.5px 2px rgb(221, 20, 114),0.5px 0.5px 5px rgb(221, 20, 114),-0.5px -0.5px 2px rgb(221, 20, 114);
 }
 .outerbox{
     width: 95%;

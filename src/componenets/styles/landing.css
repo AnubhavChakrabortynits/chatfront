@@ -1,13 +1,13 @@
 .landingoutercont{
     background-color: none;
     margin: auto;
-    height: 90vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     text-shadow: 0.3px 0.5px 1px white;
-    
+    padding-bottom: 25px;
 }
 
 .landingheading{
@@ -19,10 +19,8 @@
 }
 
 .getstartedbuttoncont{
-    
   padding: 12px 25px 12px 25px;
   border-radius: 15px;
-
   color:rgb(221, 20, 114) ;
   border:2px solid rgb(221, 20, 114); font-weight: bolder;
   font-size: 20px;
@@ -38,6 +36,13 @@
     line-height: 30px;
     font-weight: bold;
     font-size: large;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+li{
+    margin-top: 1.2em;
+    letter-spacing:1px;
+    font-weight: 800;
 }
 .getstartedbuttoncont:hover{
     background-color: rgb(221, 20, 114);
