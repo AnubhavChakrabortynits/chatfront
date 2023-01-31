@@ -1,12 +1,13 @@
 .inputdiv{
    width: 100.5%;
-    height:40px;
-    display: flex;
+   height:40px;
+   display: flex;
    position: absolute;
    bottom: 0px;
    left:0;
    right:0;
 }
+
 .inputdiv textarea{
     width: 80%;
     font-weight: 500;
@@ -51,6 +52,7 @@ textarea::-webkit-scrollbar{
     font-size: 1.5em;
     color:rgb(221, 20, 114);
 }
+
 @media (max-width:1500px) {
     .sendbutton{
         width: 30%;

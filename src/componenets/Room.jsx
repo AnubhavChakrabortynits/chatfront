@@ -125,11 +125,11 @@ useEffect(()=>{
          
           <div className='innerjoincreate'>
           <label>Room Name:</label>
-          <input className='joinInput' type='text' onChange={(e)=>{setRoom(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room name' type='text' onChange={(e)=>{setRoom(e.target.value)}}/>
           </div>
           <div className='innerjoincreate'>
           <label>Room Code:</label>
-          <input className='joinInput' type='text' onChange={(e)=>{setRoompass(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room code' type='text' onChange={(e)=>{setRoompass(e.target.value)}}/>
           </div>
           <div className='buttoncont'>
           <div >
@@ -141,11 +141,11 @@ useEffect(()=>{
         
           <div className='innerjoincreate'>
           <label>Room Name:</label>
-          <input className='joinInput' value={croom} type='text' onChange={(e)=>{setcRoom(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room name'  value={croom} type='text' onChange={(e)=>{setcRoom(e.target.value)}}/>
           </div>
           <div className='innerjoincreate'>
           <label>Room Code:</label>
-          <input className='joinInput' value={croompass} type='text' onChange={(e)=>{setcroomPass(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room code'  value={croompass} type='text' onChange={(e)=>{setcroomPass(e.target.value)}}/>
           </div>
           <div className='buttoncont'>
           <button type="submit" className='button' onClick={handleNavigateCreate}>Create</button>

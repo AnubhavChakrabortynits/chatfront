@@ -1,14 +1,13 @@
 import React from 'react'
 import '../componenets/styles/info.css'
-import { useSearchParams } from 'react-router-dom'
-
 import { NavLink,useNavigate } from 'react-router-dom'
+
 export default function Info({room,socket,handleAllUserDisplay}) {
- const [params]=useSearchParams()
+ 
  const navigate=useNavigate()
 
-
  const logout=()=>{
+
   try{
      localStorage.clear()
      alert('Logged Out Succcessfully..')

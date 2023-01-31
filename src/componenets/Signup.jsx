@@ -33,7 +33,7 @@ export default function Signup() {
   const jdata=await data.json()
 
   if(jdata.success){
-    alert('Logged In Successfully')
+    alert('Signed Up Successfully')
         navigate('/login')
   }
   else{

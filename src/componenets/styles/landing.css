@@ -18,6 +18,10 @@
     text-decoration: underline;
 }
 
+.innerdesc{
+    letter-spacing: 1.2px;
+}
+
 .getstartedbuttoncont{
   padding: 12px 25px 12px 25px;
   border-radius: 15px;
@@ -27,6 +31,7 @@
   transition: all;
   transition-duration: 0.7s;
   margin-top: 25px;
+  text-shadow: none;
 }
 
 .description{
@@ -44,6 +49,7 @@ li{
     letter-spacing:1px;
     font-weight: 800;
 }
+
 .getstartedbuttoncont:hover{
     background-color: rgb(221, 20, 114);
     color:white;

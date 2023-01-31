@@ -11,6 +11,7 @@
    border: 4px solid beige;
    box-shadow: inset 0.5px 0.5px 2px rgb(221, 20, 114),inset -0.5px -0.5px 2px rgb(221, 20, 114),0.5px 0.5px 5px rgb(221, 20, 114),-0.5px -0.5px 2px rgb(221, 20, 114);
 }
+
 .outerbox{
     width: 95%;
     max-width:95%;
@@ -21,10 +22,12 @@
     margin: auto;
   overflow-x: hidden;
 }
+
 .end{
     background-color: antiquewhite;
  margin-left: auto;
 }
+
 .end > .username{
   
     font-family: 'Edu TAS Beginner', cursive;
@@ -49,9 +52,11 @@
     width: auto;
    
 }
+
 .bgwhite{
     color: black;font-weight: bolder;
 }
+
 .start > .username{
     padding-top:2px;padding-bottom: 2px;
     color:red;
@@ -67,6 +72,7 @@
   white-space: pre-line;
     font-weight: bolder;
 }
+
 .messagebox{
     max-width: 100%;
     height: auto;
@@ -90,6 +96,7 @@
     color:black;
     font-weight: bolder;
 }
+
 @media (max-width:1050px) {
     .username{
         font-size: small;
