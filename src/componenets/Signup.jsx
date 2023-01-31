@@ -58,11 +58,11 @@ export default function Signup() {
         </div>
         <div className='inputname' >
           <label>Name:</label>
-          <input type='text' value={name} onChange={(e)=>{setName(e.target.value)}} />
+          <input type='text' value={name} placeholder="Enter Your Username" onChange={(e)=>{setName(e.target.value)}} />
         </div>
         <div className='inputpass'>
           <label>Password:</label>
-          <input type='text' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+          <input type='password' value={password} placeholder="Enter Your Password" onChange={(e)=>{setPassword(e.target.value)}} />
         </div>
         <div className='buttonsignupcont'>
           <div className='signloginbutton' style={{fontWeight:'800'}}  onClick={signup}><span>Signup</span></div> <div className='gotobutton' style={{padding:'10px 15px',fontWeight:'bolder',cursor:'pointer',border:'1px solid white',marginTop:'15px',borderRadius:'12px'}} onClick={()=>{navigate('/login')}}> <span>goto Login</span> </div>

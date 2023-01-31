@@ -51,11 +51,11 @@ export default function Login() {
         </div>
         <div className='inputname'>
           <label>Name:</label>
-          <input type='text' value={name} onChange={(e)=>{setName(e.target.value)}} />
+          <input type='text' value={name} placeholder="Enter Your Username" onChange={(e)=>{setName(e.target.value)}} />
         </div>
         <div className='inputpass'>
           <label>Password:</label>
-          <input type='text' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+          <input type='password' value={password} placeholder="Enter Your Password" onChange={(e)=>{setPassword(e.target.value)}} />
         </div>
         <div className='buttonsignupcont'>
         <div className='signloginbutton' style={{fontWeight:'800'}}  onClick={login}><span>Login</span></div> <div className='gotobutton' style={{padding:'10px 15px',cursor:'pointer',border:'1px solid white',marginTop:'15px',borderRadius:'12px'}} onClick={()=>{navigate('/signup')}}><span>goto Signup</span> </div>

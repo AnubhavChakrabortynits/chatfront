@@ -129,7 +129,7 @@ useEffect(()=>{
           </div>
           <div className='innerjoincreate'>
           <label>Room Code:</label>
-          <input className='joinInput'placeholder='Enter Room code' type='text' onChange={(e)=>{setRoompass(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room code' type='password' onChange={(e)=>{setRoompass(e.target.value)}}/>
           </div>
           <div className='buttoncont'>
           <div >
@@ -145,7 +145,7 @@ useEffect(()=>{
           </div>
           <div className='innerjoincreate'>
           <label>Room Code:</label>
-          <input className='joinInput'placeholder='Enter Room code'  value={croompass} type='text' onChange={(e)=>{setcroomPass(e.target.value)}}/>
+          <input className='joinInput'placeholder='Enter Room code'  value={croompass} type='password' onChange={(e)=>{setcroomPass(e.target.value)}}/>
           </div>
           <div className='buttoncont'>
           <button type="submit" className='button' onClick={handleNavigateCreate}>Create</button>
