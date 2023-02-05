@@ -18,10 +18,6 @@
     text-decoration: underline;
 }
 
-.innerdesc{
-    letter-spacing: 1.2px;
-}
-
 .getstartedbuttoncont{
   padding: 12px 25px 12px 25px;
   border-radius: 15px;
@@ -42,12 +38,6 @@
     font-weight: bold;
     font-size: large;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-}
-
-li{
-    margin-top: 1.2em;
-    letter-spacing:1px;
-    font-weight: 800;
 }
 
 .getstartedbuttoncont:hover{
