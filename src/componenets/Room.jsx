@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './styles/room.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Room() {
  
    const navigate=useNavigate()
@@ -16,7 +18,7 @@ export default function Room() {
 
 const handlenavigatejoin=async()=>{
   if( !room ||!roompass){
-    alert('Fill In All The Details')
+    toast.warning("Please fill In All the Details",{autoClose: 1200})
     return
   }
 
@@ -32,25 +34,26 @@ const handlenavigatejoin=async()=>{
   console.log(jdata)
   if(jdata.success){
     navigate(`/chat`,{state:{roomobj:jdata.room,userobj:name}})
+    toast.success("Entered Chatroom Successfully",{autoClose: 1200})
   }
   else{
-    alert(jdata.error)
+    toast.error("SomeThing Went Wrong.. Could Not join Room...",{autoClose: 1200})
   }
 }
 
 
 const handleNavigateCreate=async()=>{
   if( !croom ||!croompass){
-    alert('Fill In All The Details')
+    toast.warning("Please fill In All the Details",{autoClose: 1200})
     return
   }
      if(croom.length>10){
-      alert('Max Length Of Room Can Be 12')
+      toast.info("Maximum Length Of Name Can Be Of 12 Characters",{autoClose: 1200})
       return
      }
 
      if(croompass.length<6){
-      alert('Room Password Needs To Be Of Atleast 6 Characters')
+      toast.info("room Password Needs To Be Of Atleast 6 characters",{autoClose: 1200})
       return
      }
   const data=await fetch(`http://localhost:5000/create`, {
@@ -64,10 +67,11 @@ const handleNavigateCreate=async()=>{
   const jdata=await data.json()
 
   if(jdata.success){
+    toast.success("Created And Entered Chatroom Successfully",{autoClose: 1200})
     navigate(`/chat`,{state:{roomobj:jdata.room,userobj:name}})
   }
   else{
-    alert(jdata.error)
+    toast.error(`${jdata.error}`,{autoClose: 1200})
   }
 }
 
@@ -86,7 +90,7 @@ const onRoomPage=async()=>{
     setName(jdata.user.user)
   }
   else{
-    alert(jdata.error)
+    toast.error(`${jdata.error}`,{autoClose: 1200})
     navigate('/login')
     localStorage.clear()
   }
@@ -95,11 +99,11 @@ const onRoomPage=async()=>{
 const logout=()=>{
   try{
      localStorage.clear()
-     alert('Logged Out Succcessfully..')
+     toast.error("Logged Out Succesfully",{autoClose: 1200})
      navigate('/')
   }
   catch(e){
-            console.log(e)
+    toast.error("Something Went Wrong. Could Not Logout",{autoClose: 1200})
   }
 }
 
@@ -122,7 +126,6 @@ useEffect(()=>{
         <div className='heading' style={{fontSize:"20px"}}>Join / Create Room</div>
         <div className='inputbox' style={{display:'flex',justifyContent:"space-evenly",alignItems:'center',padding:'10px'}}>
         <div className='joincreate' style={{display:'flex',justifyContent:"space-evenly",alignItems:'center',padding:'10px',flexDirection:"column"}}>
-         
           <div className='innerjoincreate'>
           <label>Room Name:</label>
           <input className='joinInput'placeholder='Enter Room name' type='text' onChange={(e)=>{setRoom(e.target.value)}}/>

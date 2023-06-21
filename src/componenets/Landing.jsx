@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { NavLink,useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import './styles/landing.css'
 
 export default function Landing() {

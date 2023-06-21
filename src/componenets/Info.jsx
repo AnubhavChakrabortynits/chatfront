@@ -1,6 +1,8 @@
 import React from 'react'
 import '../componenets/styles/info.css'
 import { NavLink,useNavigate } from 'react-router-dom'
+import { toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Info({room,socket,handleAllUserDisplay}) {
  
@@ -10,11 +12,11 @@ export default function Info({room,socket,handleAllUserDisplay}) {
 
   try{
      localStorage.clear()
-     alert('Logged Out Succcessfully..')
+     toast.success("Successfully Logged Out From The Room", { autoClose: 1200 })
      navigate('/')
   }
   catch(e){
-            console.log(e)
+    toast.error("Somehting Wen tWrong. Please Try Again",{autoClose: 1200});
   }
 }
 

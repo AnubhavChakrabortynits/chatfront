@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router'
 import './styles/signup.css'
+import { toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Login() {
 
   const [name,setName]=useState('')
@@ -10,7 +13,7 @@ export default function Login() {
   const login=async()=>{
 
      if(!name || !password){
-         alert('Please Fill In All The Details')
+         toast.warning("Please Fill In All The Details", {autoClose: 1200})
          return
      }
   const data=await fetch(`http://localhost:5000/login`, {
@@ -25,11 +28,11 @@ export default function Login() {
 
   if(jdata.success){
     localStorage.setItem('user',jdata.user)
-    alert('Logged In Successfully')
+    toast.success("Successfully Logged In",{autoClose: 1200})
     navigate('/room')
   }
   else{
-    alert(jdata.error)
+    toast.error(`${jdata.error}`,{autoClose: 1200})
   }
 
   }

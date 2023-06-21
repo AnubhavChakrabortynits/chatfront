@@ -6,13 +6,14 @@ import Login from './componenets/Login';
 import Room from './componenets/Room';
 import Chat from './componenets/Chat';
 import './componenets/styles/all.css'
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
 
   return (
     <>
+     <ToastContainer />
      <Routes>
-     
      <Route path='/' element={<Landing/>} />
      <Route path='login' element={<Login/>} />
      <Route path='signup' element={<Signup/>} />

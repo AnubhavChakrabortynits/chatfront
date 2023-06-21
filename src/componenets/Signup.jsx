@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router'
-import { NavLink } from 'react-router-dom'
 import './styles/signup.css'
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 export default function Signup() {
 
   const [name,setName]=useState('')
@@ -11,15 +12,15 @@ export default function Signup() {
   const signup=async()=>{
 
      if(!name || !password){
-         alert('Please Fill In All The Details')
+      toast.warning("Please fill In All the Details",{autoClose: 1200})
          return
      }
      if(name.length>15){
-      alert('Max Length Of UserName Can Be 15')
+      toast.info("Maximum Length Of Name Can Be Of 15 Characters",{autoClose: 1200})
       return
      }
      if(password.length<6){
-      alert('Password Length Needs To Be Atleast Of 6 Characters')
+      toast.info("Password Needs To Be Of At Least 6 Characters",{autoClose: 1200})
       return
      }
   const data=await fetch(`http://localhost:5000/signup`, {
@@ -33,11 +34,11 @@ export default function Signup() {
   const jdata=await data.json()
 
   if(jdata.success){
-    alert('Signed Up Successfully')
+    toast.success("Signed Up succesfully",{autoClose: 1200})
         navigate('/login')
   }
   else{
-    alert(jdata.error)
+   toast.error(`${jdata.error}`,{autoClose: 1200})
   }
 
   }

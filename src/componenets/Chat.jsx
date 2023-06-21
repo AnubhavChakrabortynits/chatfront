@@ -6,6 +6,8 @@ import Info from './Info';
 import Input from './Input';
 import Messages from './Messages';
 import '../componenets/styles/chat.css'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -40,7 +42,7 @@ const handleInitialJoin=async()=>{
   })
   const jdata=await data.json()
   if(jdata.error){
-    alert("Please Log In Again...")
+    toast.error("Please LogIn Again...", { autoClose: 1200 })
     localStorage.clear()
     navigate('/login')
     return
@@ -82,7 +84,7 @@ const deleteRoom=async(socket)=>{
     navigate('/room')
   }
   else{
-    alert('Room Could Not Be Deleted')
+    toast.error("Room Could Not Be Deleted", { autoClose: 1200 })
   }
 }
 
@@ -110,7 +112,7 @@ const removeUser=async(username)=>{
     return
   }
   else{
-    alert('User Could Not Be Removed')
+    toast.success("User Could Not Be Removed", { autoClose: 1200 })
   }
 }
 
@@ -136,7 +138,7 @@ const banUser=async(username)=>{
     return
   }
   else{
-    alert('User Could Not Be Banned')
+    toast.success("User Could Not Be Banned", { autoClose: 1200 })
   }
 }
 
@@ -163,7 +165,7 @@ const leaveRoom=async(username)=>{
     return
   }
   else{
-    alert('User Could Not Be Removed')
+    toast.success("Something Went Wrong...", { autoClose: 1200 })
   }
 }
 
@@ -200,7 +202,7 @@ const [mesgs,setMesgs]=useState([])
      //console.log(socket)
      socket.on('mesg',(data)=>{
         if(data.type=='roomdeleted'){
-          alert('Room Has Been Deleted By The Admin')
+          toast.info("room Has Been Deleted By Admin", { autoClose: 1200 })
           navigate('/room')
           return
         }
@@ -210,21 +212,21 @@ const [mesgs,setMesgs]=useState([])
         if(data.type=='userremoved'){
           getUsersInARoom()
           if(data.name==location.state.userobj){
-            alert('You Have Been Removed By The Room Admin')
+            toast.info("You Have Been Removed From The Room By Admin", { autoClose: 1200 })
             navigate('/room')
           }
         }
         if(data.type=='userbanned'){
           getUsersInARoom()
           if(data.name==location.state.userobj){
-            alert('You Have Been Banned By The Room Admin')
+            toast.info("You Have Been Banned From The Room By Admin", { autoClose: 1200 })
             navigate('/room')
           }
         }
         if(data.type=='userleft'){
           getUsersInARoom()
           if(data.name==location.state.userobj){
-            alert('You Have Left The Room')
+            toast.info("You Have Left The room", { autoClose: 1200 })
             navigate('/room')
           }
         }

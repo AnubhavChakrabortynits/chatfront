@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react'
-import ScrollToBottom from 'react-scroll-to-bottom'
-
 import Message from './Message'
 import '../componenets/styles/messages.css'
 import { css } from '@emotion/react'
-
-
-
-
 
 export default function Messages({messages,currentuser}) {
 
