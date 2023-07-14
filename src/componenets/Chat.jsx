@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect,useRef } from 'react';
-import { useSearchParams,useNavigate,useLocation } from 'react-router-dom';
+import {useNavigate,useLocation } from 'react-router-dom';
 import io from 'socket.io-client'
 import Info from './Info';
 import Input from './Input';
