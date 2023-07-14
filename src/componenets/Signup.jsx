@@ -8,7 +8,7 @@ export default function Signup() {
   const [name,setName]=useState('')
   const [password,setPassword]=useState('')
 
-    const navigate=useNavigate()
+  const navigate=useNavigate()
   const signup=async()=>{
 
      if(!name || !password){

@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 let socket;
 export default function Chat({route}) {
 
-const [params]=useSearchParams()
 const navigate=useNavigate()
 const location=useLocation()
 
@@ -177,29 +176,27 @@ const sendMesg=()=>{
 }
 
 const ref=useRef()
-const [name,setName]=useState(location.state.userobj)
-const [users,setUsers]=useState(()=>location.state.roomobj.people)
-const [room,setRoom]=useState(location.state.roomobj.name)
-const [roompass,setRoompass]=useState(location.state.roomobj.password)
+const [name,setName]=useState(location.state?.userobj)
+const [users,setUsers]=useState(()=>location.state?.roomobj?.people)
+const [room,setRoom]=useState(location.state?.roomobj?.name)
+const [roompass,setRoompass]=useState(location.state?.roomobj?.password)
 const [mesg,setMesg]=useState('')
 const [mesgs,setMesgs]=useState([])
-
+    
     useEffect(()=>{
-      
       if(!(localStorage.getItem('user'))){
         navigate('/login')
         return
       }
-
       handleInitialJoin()
       
      socket=io( `localhost:5000`,{transports: ['websocket']}) 
      getUsersInARoom()  
-     setRoom(location.state.roomobj.name)
-     setName(location.state.userobj)
-     setRoompass(location.state.roomobj.password)
+     setRoom(location.state.roomobj?.name)
+     setName(location.state?.userobj)
+     setRoompass(location.state.roomobj?.password)
      socket.emit('join',{name,room,roompass})
-     //console.log(socket)
+
      socket.on('mesg',(data)=>{
         if(data.type=='roomdeleted'){
           toast.info("room Has Been Deleted By Admin", { autoClose: 1200 })
@@ -243,7 +240,7 @@ const [mesgs,setMesgs]=useState([])
     <div className='chatoutcont' style={{color:"red"}}>
     <div ref={ref} className='users display' id="users">
     <div className='' style={{height:"100px",justifyContent:'center',display:'flex',backgroundColor:'antiquewhite',fontWeight:'800',fontSize:'24px',zIndex:'2'}} key={-1}><span style={{margin:'auto'}}>Users In The Room...</span> </div>
-       {users.map((item,i)=>{
+       {users?.map((item,i)=>{
         return <div key={i} className='userrow'> 
         <div className='usericon '>
         <i className="fa-solid fa-user"></i>
@@ -251,15 +248,15 @@ const [mesgs,setMesgs]=useState([])
         <div className='username'>
              {item.name}
         </div>
-        {location.state.userobj==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser' onClick={()=>{removeUser(item.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item.name==location.state.roomobj.admin ?<div className='rmuser'>*Admin</div>:<div className='rmuser'></div>)}
-        {location.state.userobj==(location.state.roomobj.admin) && (item.name!=location.state.roomobj.admin)?<div className='rmuser'  onClick={()=>{banUser(item.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
-        {location.state.roomobj.admin==location.state.userobj && location.state.userobj==(item.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(location.state.userobj==(item.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: location.state.userobj==(location.state.roomobj.admin) && (item.name)!=(location.state.roomobj.admin)?'':<div className='rmuser'></div>}
+        {location.state?.userobj==(location.state?.roomobj?.admin) && (item.name!=location.state?.roomobj?.admin)?<div className='rmuser' onClick={()=>{removeUser(item?.name)}}>Remove <i className="fa-solid fa-trash"></i></div>:(item?.name==location.state?.roomobj?.admin ?<div className='rmuser'>*Admin</div>:<div className='rmuser'></div>)}
+        {location.state?.userobj==(location.state?.roomobj?.admin) && (item.name!=location.state?.roomobj?.admin)?<div className='rmuser'  onClick={()=>{banUser(item?.name)}}>Ban User <i class="fa-solid fa-ban"></i></div>:''}
+        {location.state?.roomobj?.admin==location.state?.userobj && location.state?.userobj==(item?.name)?<div className='rmuser' onClick={()=>{deleteRoom(socket);}}>Delete Room<i class="fa-solid fa-right-from-bracket"></i></div>:(location.state?.userobj==(item?.name))?<div className='rmuser'  onClick={()=>{leaveRoom(item?.name)}}>Leave Room<i className="fa-solid fa-right-from-bracket"></i></div>: location.state?.userobj==(location.state?.roomobj?.admin) && (item.name)!=(location.state?.roomobj?.admin)?'':<div className='rmuser'></div>}
         </div>
        })}
     </div>
     <Info room={room} socket={socket} handleAllUserDisplay={handleAllUserDisplay}/>
       <div className='container'>
-      <Messages messages={mesgs} currentuser={location.state.userobj}  />
+      <Messages messages={mesgs} currentuser={location.state?.userobj}  />
       </div>
       <div className='inputcont'>
       <Input className='input' message={mesg} setMessage={setMesg} sendMessage={sendMesg} />
